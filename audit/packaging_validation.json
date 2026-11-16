@@ -1,0 +1,99 @@
+{
+  "scope": "Offline validation of the supplied publication bundle in an isolated copy; no new model responses were collected.",
+  "python_tested": "3.12.14",
+  "dependencies": {
+    "numpy": {
+      "version": "2.3.5",
+      "requires_python": ">=3.11"
+    },
+    "scipy": {
+      "version": "1.17.0",
+      "requires_python": ">=3.11"
+    },
+    "pandas": {
+      "version": "2.2.3",
+      "requires_python": ">=3.9"
+    },
+    "matplotlib": {
+      "version": "3.10.8",
+      "requires_python": ">=3.10"
+    }
+  },
+  "python_minimum_for_pinned_dependency_set": "3.11 (package metadata); only Python 3.12.14 was exercised in this check.",
+  "commands": [
+    {
+      "command": "python analyze.py",
+      "exit_code": 0,
+      "stdout_matches_saved_expected_output": true
+    },
+    {
+      "command": "python analyze.py --sensitivity",
+      "exit_code": 0,
+      "stdout_matches_saved_expected_output": true
+    },
+    {
+      "command": "python stats.py",
+      "exit_code": 0,
+      "stdout_matches_saved_expected_output": true
+    },
+    {
+      "command": "python stats.py --sensitivity",
+      "exit_code": 0,
+      "stdout_matches_saved_expected_output": true
+    },
+    {
+      "command": "python compare.py",
+      "exit_code": 0,
+      "stdout_matches_saved_expected_output": true
+    },
+    {
+      "command": "python analyze_timing.py",
+      "exit_code": 0,
+      "stdout_matches_saved_expected_output": true
+    },
+    {
+      "command": "python analyze_feedback.py results_feedback.jsonl detection.csv",
+      "exit_code": 0,
+      "stdout_matches_saved_expected_output": true
+    },
+    {
+      "command": "python replay_check_strict.py --output audit/replay_check_strict.json",
+      "exit_code": 0
+    },
+    {
+      "command": "python figures/make_figure1.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python figures/make_figure_a1.py",
+      "exit_code": 0
+    }
+  ],
+  "analysis_stdout_files_matching_expected": 7,
+  "figure_bytes_identical": {
+    "figures/figure1_feedback_shifts.png": true,
+    "figures/figureA1_switch_rates.png": true
+  },
+  "strict_replay": {
+    "runner_snapshots": 6,
+    "record_version_checks": 12080,
+    "mismatches": 0,
+    "final_runner_saved_records": 3280,
+    "scope": "Saved reply replay and fake transport checks; not proof of historical execution or provider settings."
+  },
+  "network_control": "Socket connections and urllib were blocked; strict replay substitutes an in-process fake HTTP transport for payload probes.",
+  "base_bundle_sha256_hashes_unchanged": true,
+  "credential_pattern_matches": 0,
+  "publication_exclusions": [
+    "__pycache__/",
+    "script_versions/__pycache__/"
+  ],
+  "collection_caveat": "The runner writes beside fliprate.py and resumes existing result files. Use a separate copy or checkout for new collection; changing the current working directory alone does not isolate outputs.",
+  "layout_caveat": "Keep runnable scripts and CSV/JSONL inputs at the same repository root. compare.py and analyze_timing.py resolve inputs from the current working directory; several other scripts resolve them from their own file location. Strict replay expects script_versions under the data root.",
+  "not_revalidated": [
+    "New model outputs",
+    "Provider-side historical settings",
+    "Contemporaneous provenance or registration/blinding timestamps",
+    "Every possible credential format"
+  ]
+}

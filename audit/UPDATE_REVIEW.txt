@@ -1,0 +1,102 @@
+FLIPRATE: REVIEW OF THE RECOVERED SCRIPT VERSIONS
+15 November 2026
+
+VERDICT
+
+The recovered Experiment 2 source file is compatible with all 400 saved Experiment 2 conversations. The Experiment 3 source is exactly that file plus 106 inserted lines, with no deleted/replaced lines and no changes to existing top-level function/class definitions. A separate first-argument-generation snapshot is also present and behaves as described in the controlled checks below.
+
+This update resolves the practical absence of a standalone Experiment 2-stage source file. The source attribution remains based on the author's recovery account; replay cannot independently establish the exact file executed at an earlier time.
+
+The newest supplied ZIP is a provenance update. It does not contain the downstream analysis and figure fixes from the previous independent review. The accompanying fliprate_reviewed_bundle_v2.zip merges the recovered source snapshots with those fixes. Use the merged bundle for further report/repository work. The PDF remains the unchanged supplied draft.
+
+1. WHAT CHANGED BETWEEN THE TWO SUPPLIED ARCHIVES
+
+Forty common files are byte-identical, including all four raw result files, materials, analysis scripts, expected outputs, figures, the original replay checker and the report PDF. README.md is the only changed common file.
+
+New snapshots:
+- script_versions/fliprate_used_for_first_argument_pass.py
+- script_versions/fliprate_used_for_exp2.py
+
+Renamed snapshot:
+- script_versions/fliprate_used_for_exp3.py is byte-identical to the earlier fliprate_used_for_exp2_and_exp3.py.
+
+No experimental observations, question texts, argument texts, essay texts or grading labels changed in this upload.
+
+2. RECOVERED EXPERIMENT 2 RUNNER
+
+The stronger replay checker verifies model IDs, complete message roles/content, every field actually stored in the logs, follow-up-round fields, finish reasons where recorded, exact fake-client call counts and complete consumption of the saved replies. It performs no model requests and blocks network access.
+
+Recovered Experiment 2 runner:
+- Experiment 1: 800/800 records reproduce.
+- Experiment 2: 400/400 records reproduce.
+- Zero mismatches.
+
+Recovered Experiment 2 to Experiment 3 source comparison:
+- 549 lines to 655 lines.
+- Exactly 106 inserted lines.
+- Zero removed or replaced lines.
+- No changed existing top-level function/class definitions or constants.
+
+This supports an additions-only description for this specific transition. It does not support a blanket statement that every version in the project only added code. Earlier steps extended existing OpenRouter, run_one and run functions; the argument-generation and feedback amendments also changed existing code.
+
+3. ARGUMENT-GENERATION CHANGE
+
+The first argument-pass snapshot uses ARG_MAX_TOKENS = 4000. The recovered Experiment 2 snapshot uses 8000, allows existing empty argument rows to be rewritten, and makes its option-reference checks target-aware.
+
+The token change applies to Kimi's creation of argument materials. The four tested models' Experiment 2 requests retain the 2,000-token default.
+
+Controlled offline checks used a temporary material copy with the math-4/D argument made empty:
+- First-pass snapshot: leaves the existing empty row untouched; zero fake generation calls; 4,000-token client configuration.
+- Experiment 2 snapshot: requests exactly one replacement; 8,000-token configuration; all other 199 rows remain unchanged.
+
+The replacement is a canned response from the saved materials. This verifies code behavior without reconstructing unlogged historical generation calls. The claim that 199 final arguments came from the first pass and the final one from the rewrite is consistent with the package but is attributed to the author's account. The original generation-call logs and first-pass CSV containing its empty row were not supplied.
+
+All 103 distinct argument variants actually used in the experiments remain text-matched to the saved conversations, as established in the prior material audit; those materials and logs are byte-identical here.
+
+4. EXPANDED REPLAY COVERAGE
+
+Six source snapshots now participate in the strict check:
+- Experiment 1: 800 records.
+- First argument-pass snapshot: 1,200 compatibility checks of its Experiment 1/2 collection functions.
+- Recovered Experiment 2: 1,200 records across Experiments 1/2.
+- Experiment 3: 2,800 records across Experiments 1/2/3.
+- First-essay snapshot: 2,800 records across Experiments 1/2/3.
+- Final runner: all 3,280 records across all four experiments.
+
+Total: 12,080 record-version checks, zero mismatches. The first-pass compatibility checks do not claim that generation-stage snapshot was used to collect Experiment 2. The repeated version checks are not additional experimental observations.
+
+The final-runner check includes all 16 timing records without message transcripts. The original packaged replay_check.py is unchanged and does not provide this full coverage or run the historical snapshots. The merged bundle includes the stronger checker and its reproducible results.
+
+From the extracted fliprate_reviewed folder:
+
+python3 replay_check_strict.py --output audit/replay_check_strict.json
+
+5. PROVENANCE WORDING
+
+Recommended report/repository wording:
+
+"The version history was reconstructed from saved working files. A standalone Experiment 2 runner was recovered after the initial archive was assembled; its prompts and recorded response fields reproduce all 400 saved Experiment 2 conversations under offline replay. The Experiment 2-to-3 source diff adds 106 lines without changing existing definitions. Earlier Experiment 1 scheduling variants and original argument-generation call logs were not retained."
+
+Remove the obsolete statement that no standalone Experiment 2 runner is available. Do not claim independent proof of the historical file's exact identity or timestamp. The recovered source, clean comparison and full replay agreement are useful and sufficient to reproduce the saved study; no rerun is needed to resolve this packaging issue.
+
+The author reports that earlier Experiment 1 variants differed only in concurrency and rate limiting. Those variants were not included. Scheduling can affect retries and missingness; "only affects speed" is broader than the evidence supports.
+
+6. PRIOR CORRECTIONS RETAINED
+
+The new supplied archive still contains the previous versions of scoring.py, analyze.py, stats.py and both figure builders. Replacing the reviewed folder wholesale with it would lose the corrections. The merged v2 retains:
+- Actual final-answer handling, including DeepSeek control geography-41's unknown ending.
+- DeepSeek descriptive control final-change rate 2/87 = 2.3%; 766 scorable Experiment 1 conversations and 18 unknown endings.
+- Missing intermediate replies left missing, with observed protocol stopping events handled separately.
+- Wilson intervals and not-applicable correction cells.
+- Consistent sensitivity filtering.
+- Descriptive round statistics and accurate confidence-sample labels.
+- Correct figure outcome labels and output paths.
+- All unchanged primary findings: Exp1 target adoption 3/375; Exp2 0/376; matched timing 1/375 versus 0/375 for claims and 0/374 in both argument positions; feedback H1 +0.195 and H2 +0.395; 160/160 planted errors identified.
+
+The PDF is unchanged. Its prior accuracy corrections, figure insertions, placeholders and page-limit work remain outstanding. See ALIGNMENT_REVIEW.txt and audit/docs_findings.txt.
+
+7. FILES AND AUDIT TRAIL
+
+The merged bundle keeps all new historical snapshots byte-for-byte, all raw data/materials unchanged, the previous reviewed analyses/figures, and current README/replay documentation. The current audit manifest records source hashes and the final package contents. Superseded first-review provenance notes are retained under audit/previous_review/ and explicitly marked historical.
+
+No live API or model requests were made in this update. Checks focused on changed source history and integration; unchanged experimental analyses were not rerun unnecessarily.

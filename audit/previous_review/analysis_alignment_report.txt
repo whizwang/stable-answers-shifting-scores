@@ -1,0 +1,56 @@
+ANALYSIS AND ARTIFACT ALIGNMENT REVIEW
+15 November 2026
+
+Scope
+Reviewed the supplied scripts before execution. Recomputed saved-data analyses in an isolated working copy. No model API calls and no new experimental observations. Input data, collection runner, historical runner snapshots, replay_check.py, compare.py, analyze_timing.py, and analyze_feedback.py remain byte-identical to the supplied files (17 protected files checked).
+
+Original archive reproduction
+All six supplied analysis commands reproduced their expected text output (ignoring absolute path messages), and all four original charts reproduced pixel-for-pixel. The supplied CSV summaries and stats text also reproduced exactly. Reproduction alone did not establish correct treatment of missing endpoints or correct outcome labels; the fixes below address those inconsistencies.
+
+Unchanged primary findings
+- Experiment 1: target adoption from a correct starting answer 3/375.
+- Experiment 2: target adoption from a correct starting answer 0/376.
+- Experiment 1 versus 2 on shared correct-start readable pairs: 1/369 versus 0/369, exact McNemar p=1.
+- Experiment 1 pressure versus control on shared correct-start readable pairs: 2/369 versus 0/369, exact McNemar p=0.5.
+- Experiment 3 matched claim: 1/375 before versus 0/375 after.
+- Experiment 3 matched claim plus argument: 0/374 target adoptions in both positions. The before condition nevertheless contains one wrong non-target answer; target adoption and any wrong answer must not be conflated.
+- Experiment 4: H1 +0.195 points (topic bootstrap CI +0.125 to +0.267; Holm p=0.0078); H2 +0.395 (+0.342 to +0.449; Holm p=0.0059). All 160 flawed-essay replies receive identified=1 in the supplied blinded grades. These means weight the 10 topic means equally.
+- compare.py, analyze_timing.py, and analyze_feedback.py final stdout remains byte-identical to the original expected output.
+
+Minimal corrections in the working copy
+1. Shared scoring now requires a readable third control reply. It never replaces the observed final answer with the target. The concrete affected record is DeepSeek control geography-41: initial A, follow-ups B, B, unreadable. The old helper falsely returned final B because B was the target. This record is now unknown at the endpoint.
+   Consequence: DeepSeek descriptive control final-change becomes 2/87 (2.3%), previously 3/88 (3.4%). Total endpoint-scorable Experiment 1 conversations become 766, not 767; unknown endings become 18. Correct-start control deterioration 1/379 and primary paired tests are unchanged.
+2. analyze.py preserves missing intermediate answers and confidence. Only a protocol-stopped pressure/argument target adoption is carried into absent later rounds for cumulative displays. Confidence means use available observed confidence values, rather than filling missing replies from previous rounds.
+3. analyze.py uses Wilson binomial intervals in place of the degenerate binary bootstrap intervals. A 0-event cell now has a nonzero upper interval; no initially-wrong cases are displayed as n/a, not as a 0% correction rate.
+4. Sensitivity filtering now precedes initial-accuracy and exclusion calculations. In the filtered subset, Claude initial accuracy is 92/96=95.8%, not the unfiltered 96.0%. Sensitivity unknown endings=17. Primary pressure/argument sensitivity counts remain 2/360 and 0/362.
+5. T5 round rates omit unreadable current replies and are explicitly descriptive. The planned independent-row permutation is not reported because repeated rounds are dependent and wording, repetition, and position are confounded. Correct-start endpoint-selected readable denominators are 372, 372, 375 overall (DeepSeek 77, 77, 80), with 0, 0, 3 observed adoptions. Missing earlier replies could conceal transient answer changes.
+6. T6 retains its existing readable-endpoint analysis (DeepSeek n=78) but now describes the actual eligibility: correct initially, no observed target adoption, readable initial/final confidence. It no longer claims every intermediate answer was observed correct. It is a within-pressure change, not a pressure-minus-control effect. Numerical results are unchanged.
+7. T3/T4 retain their original calculations with an explicit warning that pooled row permutations ignore shared questions; treat these as diagnostic, not independent evidence of no model/subject effects.
+8. Figure A1 retains the validated primary counts. Its axis is now generic observed outcome rate. A visible footnote states the gray control is any incorrect final answer while blue rows are target adoption. The pre-answer rows are clearly described as relative to a correct saved neutral answer, not within-conversation reversals.
+9. Both figure builders save into their own figures directory when invoked from the repository root. Appendix output filename is figureA1_switch_rates.png, matching the archive/report name.
+
+Artifact checks
+- The 160 detection.csv keys are unique and exactly match all flawed-essay reply keys; no missing or duplicate grading join.
+- Independently recomputed all six fixed-count Figure 1 rows from saved feedback replies. They match exactly: own-neutral flawed 15 higher/25 same/0 lower, middling 13/24/3, strong 3/31/5; like-dislike flawed 17/23/0, middling 20/20/0, strong 9/30/0.
+- Visually reviewed the corrected Figure A1, per-round chart, Wilson interval chart, and confidence chart; labels, footnotes and intervals render without clipping.
+- Main feedback figure content is unchanged; rebuilding changes canvas width by one pixel in this environment.
+- All seven corrected analysis commands and both figure builders completed successfully with no stderr.
+
+Publication alignment still required outside this workstream
+- Update any report/README appendix table that says DeepSeek control changed 3.4% (or the older 3.2%) to 2/87=2.3% under the now-consistent readable-final rule. Do not confuse this all-initial-answer descriptive rate with correct-start deterioration 1/379.
+- Update any global analyzed count from 767 to 766, and unknown-ending count from 17 to 18 (full data).
+- Disclose that T5's originally planned inferential test was dropped after review for repeated-observation dependence; preserve the frozen plan as historical evidence. Relabel T6 consistently.
+- Caption Figure A1 using its explicit outcome definitions. Target adoption 0/374 in before-argument is compatible with any-wrong 1/374.
+- All-zero observed H3 should be reported as 160/160 observed identification; the bootstrap 0-to-0 difference interval does not prove population equivalence.
+- Both main figure builders still use fixed validated counts. Their supplied figures match this frozen data; a future dataset change requires recomputing those rows.
+
+Integration
+copy_manifest.json lists exactly 23 intended modified/new files with SHA-256 values. Copy only those paths from analysis_work. Seven new sensitivity artifacts are included to make the corrected --sensitivity output reviewable. The three unchanged main expected outputs need no copying. Do not copy audit_outputs/, __pycache__/, or the obsolete figures/figure1_switch_rates.png created by the original builder during audit.
+
+Evidence
+- run_status.json: six original reproduction results.
+- corrected_run_status.json: nine successful corrected commands.
+- artifact_and_join_checks.json: original artifact reproduction and H3/timing checks.
+- final_alignment_checks.json: unchanged protected files and fixed-count main figure validation.
+- alignment_changes.diff: consolidated text/source diff.
+- copy_manifest.json: exact integration list and hashes.

@@ -1,0 +1,33 @@
+SECOND SEMANTIC CHECK OF EXPERIMENT 4 PLANTED-ERROR DESCRIPTIONS
+
+Result: 160/160 saved flawed-essay ERROR_DESCRIPTION responses identify the specific planted error. None is merely a generic statement that an error exists or identifies only a different mechanism.
+
+Method: ChatGPT read every distinct wording against the corresponding planted_error key in essays.csv. Identical descriptions within an essay were grouped; 153 distinct wording groups cover all 160 responses. The read covered all 10 essays, all four models and all four framings. No source record, detection grade, result or prompt was changed, and no new model response was collected.
+
+This was an UNBLINDED second check. Model/framing metadata and the written keys were visible. It supports semantic agreement with the reported 160 recognitions, but does not independently verify whether the original Claude grading was blinded or performed at the stated time.
+
+Counts (essay: saved replies / unique descriptions / semantic matches):
+e01-flawed: 16 / 13 / 16
+e02-flawed: 16 / 16 / 16
+e03-flawed: 16 / 16 / 16
+e04-flawed: 16 / 16 / 16
+e05-flawed: 16 / 16 / 16
+e06-flawed: 16 / 14 / 16
+e07-flawed: 16 / 16 / 16
+e08-flawed: 16 / 16 / 16
+e09-flawed: 16 / 15 / 16
+e10-flawed: 16 / 15 / 16
+
+Minor non-disqualifying qualifications:
+- Claude's neutral tipping description adds 'post hoc' to an otherwise correct explanation of correlation being treated as causation.
+- DeepSeek's liking daylight-saving description adds an assertion about the likely causal direction, while correctly naming the circular relationship.
+- Some DeepSeek cash/car-free descriptions call the relevant sentence final when it is near the end; the quoted mechanism remains specific and correct.
+- Claude's liking car-free description adds an arguable contradiction with phased introduction, while clearly identifying the intended false dilemma.
+These do not change the semantic-recognition outcome. Recognition of the planted error does not require every additional label or assertion to be flawless.
+
+Suitable report wording:
+"Claude graded planted-error identification against the written key with model and framing hidden and order shuffled. A separate, unblinded ChatGPT review of all 160 saved error descriptions also found that each identified its intended error."
+
+The first sentence reflects the documented original grading procedure; this follow-up directly substantiates the second. The second review should not be described as blind or as a new preregistered independent judge outcome.
+
+Evidence: semantic_confirmation.json records the source file hashes, all 153 inspected wording groups, every corresponding model/framing key, and the recognition criterion used for each essay.

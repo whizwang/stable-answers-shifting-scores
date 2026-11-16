@@ -1,0 +1,54 @@
+[
+  {
+    "name": "exp1_summary",
+    "exit": 0,
+    "changed_from_original": true,
+    "stderr": ""
+  },
+  {
+    "name": "exp1_summary_sensitivity",
+    "exit": 0,
+    "changed_from_original": true,
+    "stderr": ""
+  },
+  {
+    "name": "exp1_stats",
+    "exit": 0,
+    "changed_from_original": true,
+    "stderr": ""
+  },
+  {
+    "name": "exp1_stats_sensitivity",
+    "exit": 0,
+    "changed_from_original": true,
+    "stderr": ""
+  },
+  {
+    "name": "exp1_exp2_compare",
+    "exit": 0,
+    "changed_from_original": false,
+    "stderr": ""
+  },
+  {
+    "name": "exp3_timing",
+    "exit": 0,
+    "changed_from_original": false,
+    "stderr": ""
+  },
+  {
+    "name": "exp4_feedback",
+    "exit": 0,
+    "changed_from_original": false,
+    "stderr": ""
+  },
+  {
+    "name": "figures/make_figure1.py",
+    "exit": 0,
+    "stderr": ""
+  },
+  {
+    "name": "figures/make_figure_a1.py",
+    "exit": 0,
+    "stderr": ""
+  }
+]

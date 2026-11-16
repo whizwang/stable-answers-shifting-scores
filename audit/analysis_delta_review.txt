@@ -1,0 +1,41 @@
+FOCUSED FOLLOW-UP: RECOVERED SNAPSHOTS
+15 November 2026
+
+Conclusion
+The newer upload improves runner provenance but contains none of the prior downstream analysis fixes. Start the next deliverable from the prior REVIEWED bundle, not the new upload. Retain its corrected code, expected outputs, charts, figure builders, strict replay, documentation corrections, and raw data. Merge only the newly recovered source snapshots and the associated provenance updates. No full data-analysis rerun is necessary: the four result files, all inputs, analysis scripts, expected outputs, figures and supplied PDF are byte-identical to the earlier original.
+
+Independent comparison
+- 40 common files are byte-identical between the earlier original and the new upload.
+- README.md is the only changed common file.
+- Added: script_versions/fliprate_used_for_first_argument_pass.py, script_versions/fliprate_used_for_exp2.py, script_versions/fliprate_used_for_exp3.py.
+- Removed: script_versions/fliprate_used_for_exp2_and_exp3.py. Its bytes are exactly the same as the new Exp3 file: a rename, not a code change.
+- The five corrected sources (scoring.py, analyze.py, stats.py, figures/make_figure1.py, figures/make_figure_a1.py) in the new upload each match the prior original and differ from the reviewed version.
+- The recovered Exp2-to-Exp3 transition inserts exactly 106 lines, with zero deletions/replacements. That particular transition supports the additions-only description. It does not make the entire version history append-only.
+
+Exact merge recommendation
+1. Use output/fliprate_alignment_review/fliprate_reviewed as the base. Keep its corrected analysis files and generated outputs. Do not overwrite them with the new ZIP. In particular retain the readable final-control rule, DeepSeek control 2/87, total known endpoints 766, Wilson intervals, sensitivity fixes, T5 descriptive handling, T6 endpoint label, and Figure A1 outcome definitions/output path.
+2. Add the recovered first-argument-pass and Exp2 snapshots unchanged. Use fliprate_used_for_exp3.py as the canonical name for the byte-identical former combined Exp2/Exp3 snapshot. Update references to the old name. If the old filename is retained as a compatibility alias, identify it as an alias and do not count it twice as a different version.
+3. Keep the reviewed README structure and scientific qualifications. Update only its source-version rows, recovery paragraph, coverage counts and references. The new uploaded README reintroduces the broad unsupported claim that every version only added code, so it should not replace the reviewed README wholesale.
+4. Update replay_check_strict.py's explicit sources list to use the new Exp3 name and include the two recovered snapshots. The recovered versions expose Exp1 and Exp2 runners; the intended compatibility matrix can exercise both experiments for each. Replaying only the newly introduced versions is sufficient for new evidence; running the revised strict checker is also cheap and involves no model requests. With both new versions checked on 800+400 records, the expected total is 12,080 record-version checks, replacing 9,680, but report that new total only after the checker has actually passed. It still comprises the same 3,280 saved experimental records.
+5. Regenerate strict replay/provenance manifests and source-comparison records after that focused check. Refresh snapshot file hashes and references. Preserve earlier audit logs as historical if desired, but label them as the earlier snapshot set rather than presenting obsolete statements as current.
+
+Obsolete current claims and integration hazards
+- README.md: the combined Exp2/3 table row and standalone exact-Exp2-snapshot-is-missing paragraph are obsolete. Replace with a recovered-copy statement. Preserve the distinction between compatibility with saved records and independent proof of historical file timing/provider parameters.
+- README.md and ALIGNMENT_REVIEW.txt: update 9,680 and historical coverage rows after new replay coverage is known. Do not interpret additional version checks as new experimental observations.
+- ALIGNMENT_REVIEW.txt: replace the paragraph saying the exact Exp2 snapshot remains unavailable. The closing phrase about a missing historical runner snapshot is also stale.
+- audit/runner_replay_review.txt: update its verdict, CHECK COUNTS, and PROVENANCE LIMITS for recovery. Its blanket assertion that argument generation uses 8,000 tokens is no longer accurate across the enlarged snapshot set: the first argument pass uses 4,000; the recovered Exp2 version and later runners use 8,000.
+- replay_check_strict.py: the old combined filename is hardcoded. A simple rename without changing the checker would break its next run.
+- audit/replay_check_strict.json, audit/ast_comparison.json, audit/review_manifest.json, and audit/analysis_alignment_checks.json contain old snapshot names and/or old coverage totals. Regenerate live manifests; historical logs may retain old names if explicitly identified as historical.
+- Earlier wording claiming the first-pass-to-Exp2 check became uniformly stricter is imprecise: it removes blanket option-letter flags (including the intended option) and adds target-aware detection of alternative option/answer/choice letters. Describe the rule changes directly.
+- The upload's claim about even earlier working copies changing only concurrency/rate limiting is a source-history assertion not established by the provided recovered snapshots alone. Avoid treating it as independently validated without those copies.
+
+Suggested recovery wording
+"The updated archive includes a recovered working copy identified as the Experiment 2 runner and the preceding argument-generation version. The previous combined Experiment 2/3 snapshot is now named for Experiment 3 and is byte-identical. Offline replay can test their compatibility with the saved transcripts and recorded fields; the recovered files themselves do not independently establish the historical edit dates or unlogged provider-side request settings."
+
+If the expanded strict check passes, add its actual per-version counts and outcome after that paragraph. The recovered Exp2-to-Exp3 transition can accurately be described as 106 added lines with no removed or replaced lines. Keep the broader description that the full project history extended existing functions and included a later feedback amendment.
+
+Evidence files
+- delta_hash_checks.json: exact comparison and five-source regression checks.
+- readme_upload_delta.diff: the only modified common file.
+
+No root deliverable or input file was edited. No analysis rerun, API call or new model response was needed for this delta assessment.

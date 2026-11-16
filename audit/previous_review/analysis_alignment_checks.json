@@ -1,0 +1,77 @@
+{
+  "protected_files_unchanged": [
+    "results.jsonl",
+    "compare.py",
+    "arguments.csv",
+    "analyze_feedback.py",
+    "fliprate.py",
+    "results_feedback.jsonl",
+    "essays_v1.csv",
+    "analyze_timing.py",
+    "replay_check.py",
+    "results_argument.jsonl",
+    "essays.csv",
+    "detection.csv",
+    "questions.csv",
+    "results_timing.jsonl",
+    "script_versions/fliprate_used_for_exp1.py",
+    "script_versions/fliprate_used_for_exp2_and_exp3.py",
+    "script_versions/fliprate_used_for_exp4_first_essays.py"
+  ],
+  "figure1_count_rows": [
+    [
+      "Flawed",
+      15,
+      25,
+      0,
+      40
+    ],
+    [
+      "Middling",
+      13,
+      24,
+      3,
+      40
+    ],
+    [
+      "Strong",
+      3,
+      31,
+      5,
+      39
+    ],
+    [
+      "Flawed",
+      17,
+      23,
+      0,
+      40
+    ],
+    [
+      "Middling",
+      20,
+      20,
+      0,
+      40
+    ],
+    [
+      "Strong",
+      9,
+      30,
+      0,
+      39
+    ]
+  ],
+  "figure1_fixed_counts_match_saved_data": true,
+  "visually_reviewed": [
+    "figures/figureA1_switch_rates.png",
+    "charts/1_flip_curves.png",
+    "charts/2_capitulation_vs_correction.png",
+    "charts/4_confidence_erosion.png"
+  ],
+  "primary_expected_outputs_unchanged": [
+    "expected_outputs/exp1_exp2_compare.txt",
+    "expected_outputs/exp3_timing.txt",
+    "expected_outputs/exp4_feedback.txt"
+  ]
+}

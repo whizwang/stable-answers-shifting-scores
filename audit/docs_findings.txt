@@ -1,0 +1,60 @@
+DOCUMENTS AND MATERIALS ALIGNMENT REVIEW
+15 November 2026
+
+Input: tmp/alignment_review/input/fliprate_all_experiments. Source archive was not modified. Saved results were not recollected. PDF text was extracted and pages 1 and 10 rendered for visual verification.
+
+MATERIALS: CHECKS PASS
+
+1. All four raw result files are byte-identical to the previously independently audited uploads. questions.csv is also byte-identical to the earlier questions(2).csv. No result records were altered by this packaging step.
+
+2. arguments.csv contains 200 generated argument variants. All 103 distinct question/target variants actually used match the saved transcripts: 389 Experiment 2 argument instances and 792 timing records with an argument and saved messages. The used set is 100 wrong-target variants plus three correct-target variants (geography-0, law-1117, law-1320). No text mismatch remains.
+
+3. Relative to the version previously uploaded HERE, the math-4 wrong argument text was already identical to the archived version. The only arguments.csv change is its finish field: 'stop' becomes 'stop (rewritten after an empty first reply; text as used in the transcripts)'. This does not refute Claude's account of repairing a different older copy, but do not tell the user that our previous upload had missing argument text. Consider keeping the machine-readable finish reason as 'stop' and documenting recovery in a separate provenance field or note, rather than mixing a finish status and prose in one field. No scoring impact was found.
+
+4. essays_v1.csv is byte-identical to the earlier uploaded essays.csv. Final essays.csv differs only in e04-flawed and e09-flawed; the changed fields are essay and planted_error. Every one of the 480 rating prompts contains the corresponding final essay text. Paragraph lengths are 159–196 whitespace-separated words.
+
+5. detection.csv has exactly 160 unique (essay_id, model, framing) keys, all identified=1, and the key set exactly equals the 160 flawed-paragraph responses. Grade IDs are also unique. This checks the final join and counts. The CSV alone cannot establish whether the grading was blinded or when the keys were unblinded.
+
+6. The amended Experiment 4 protocol agrees with the executed evaluation on the fixed rubric, 4,000-token budget as configured in code, changed H3 semantic-recognition outcome, ten-topic analysis, exact sign-flip test, topic bootstrap, Holm family, complete-pair rule and 0.5-point H1 threshold. The frozen-plan wording 'only the first sentence' is imprecise: actual nonneutral framing strings add 'Please rate it.' as a second sentence. Current report should say only the opening framing differs. Preserve the historical plan as written; add a dated post-run clarification rather than silently rewriting a preregistration.
+
+7. The protocol records the original plan and Amendment 1, and discloses changes before ratings. Local prose timestamps are provenance assertions, not independent proof of when materials, code or grading were frozen. Saved data and replay demonstrate content consistency, not prospective chronology.
+
+REPORT: SUBSTANTIAL CORRECTIONS INCORPORATED
+
+The archived PDF includes the first-20-after-exclusions selection rule; the 387-complete-baseline accounting; matched pressure–argument 1/369 versus 0/369, p=1.0; matched pressure–control 2/369 versus 0/369, p=.5; the neutral control's different wrong answer; Claude's round-1 non-target error; unreadable earlier DeepSeek turns; the small significant confidence changes and Claude's tiny correction comparison; and the API-error exception. These are aligned with the independent audit.
+
+REPORT: REMAINING CORRECTIONS
+
+Page 3, contribution 1: 'all scored without an AI judge' still contradicts the methods and page-14 grading statement. Numerical scores/answer letters were parsed directly; planted-error recognition was graded by Claude and checked by GPT. Correct the contribution.
+
+Page 5 Methods and page 8 Figure 1 caption: 'only the first sentence' should be 'only the opening framing'. This is an exact-prompt description correction, not a different experiment.
+
+Page 6, final factual-results sentence: 'No reply that followed a correct answer was wrong in any way (0 of 754)' remains overly broad. Prefix 'Across the two post-answer conditions of Experiment 3'. Explain 754 all-available post-answer replies versus 749 matched post-answer replies if needed.
+
+Page 6 Table 1 caption says unknown outcomes arose because of token limits. One Experiment 2 final reply is logged as an API error, so use 'unreadable final replies' with most caused by the limit. Page 12 Table A1 likewise attributes all unknown DeepSeek outcomes to the token limit; qualify this and avoid claiming Exp1 causes were logged, because Exp1 does not record finish reasons.
+
+Page 8: 'DeepSeek barely responded to authorship' should be 'DeepSeek had a near-zero mean authorship-and-pride effect'. Seven increases and six decreases nearly cancel; its individual scores often changed.
+
+Page 10 reference 5 still labels Gupta as unqualified NeurIPS 2026 and uses the event link. Prior review verified authors identify the JUDGe Workshop. Cite the workshop or arXiv and use the working arXiv link.
+
+Page 12 Figure A1 insertion placeholder names figure1_switch_rates.png, but the archive contains figures/figureA1_switch_rates.png. Fix the filename in the paper instructions. The Figure A1 caption calls all rows 'correct answers abandoned'; pre-answer rows are target adoption relative to a saved neutral reference, not a within-conversation abandonment. Distinguish conversation outcomes and matched single replies.
+
+Page 14 Epoch self-audit still treats 7/125 excluded candidate questions and at most3/25 per subject as below the 20% threshold for a flawed retained benchmark. Screening exclusions do not measure remaining defects. Remove the threshold inference. 'Epoch recommends at least five' should specify repeated runs for error bars, per earlier verified source.
+
+Page 14 says all materials are published despite GitHub/data placeholders on pages9–10. Finalize links before making that claim. The archived PDF remains explicitly a draft.
+
+Pages 2 and 4 describe every cue as offering no valid evidence without fully stating the initially-wrong branch. The runner sometimes pushes the correct answer and provides the correct-target argument. Scope the no-valid-evidence claim to the primary correct-start, wrong-target branch and describe the correction branch briefly.
+
+Authorship and pride remain conflated by design. Use both in the main result rather than implying ownership alone was isolated. Statements about 'hand' review and 'author reviewed every claim' should describe the actual human versus model roles.
+
+PAGE COUNT AND PRESENTATION
+
+The new PDF is 15 pages, versus 14 in the earlier snapshot. The Conclusion is on page9; Code/Data and Author Contributions extend onto page10, where References begin. It is therefore over the eight-page main-text limit before adding either figure. Page1 has six placeholder author cells, the abstract still spills onto page2, and the yellow template guidance remains on page2. Both main and appendix figures remain placeholders. Table2 now stays together on page7; TableA3 is split across pages13–14. The abstract remains approximately248words, within the specified range but awkwardly paginated.
+
+The main data and most corrected results are aligned. The draft PDF is not yet a final submission artifact. Make a focused text/layout revision, insert the figures, then re-export and count pages. Do not hide these remaining document issues behind a successful replay check.
+
+FILES IN THIS REVIEW
+
+materials_audit.json: hashes, exact material differences, 103-argument check, final essay match, detection join.
+report.txt: extracted full PDF text.
+page1.png and page10.png: visual evidence of placeholders and main-text overflow.

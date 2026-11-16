@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use these research artifacts, please cite the accompanying report."
+type: software
+title: "Stable Answers, Shifting Scores: User Influence Across Four Language Models"
+authors:
+  - family-names: Yang
+    given-names: Elizabeth
+abstract: "Research artifacts for four experiments on answer stability, error recognition and preference-linked feedback ratings in language models."
+keywords:
+  - sycophancy
+  - language models
+  - evaluation
+  - epistemics
+preferred-citation:
+  type: generic
+  title: "Stable Answers, Shifting Scores: User Influence Across Four Language Models"
+  authors:
+    - family-names: Yang
+      given-names: Elizabeth
+  year: 2026
+  notes: "Hackathon report prepared for the Apart Research AI x Epistemics Research Sprint, November 2026."

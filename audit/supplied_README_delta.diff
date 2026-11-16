@@ -1,0 +1,15 @@
+--- prior_original/README.md
++++ new_upload/README.md
+@@ -11,8 +11,10 @@
+ `fliprate.py` grew as experiments were added; each version only added code, without changing how earlier experiments were run. The versions kept are in `script_versions/`:
+ | File | What it was used for | Changes from the previous version |
+ |---|---|---|
+-| `fliprate_used_for_exp1.py` | Experiment 1 (saved just before the Experiment 2 changes) | First version |
+-| `fliprate_used_for_exp2_and_exp3.py` | Experiment 3; also contains the Experiment 2 code (the exact file used for the Experiment 2 run was not saved separately) | Adds the argument condition, Kimi argument writing, finish-reason logging, a per-run token limit, and the timing experiment. Experiment 1 prompts, settings and scoring unchanged. |
++| `fliprate_used_for_exp1.py` | Experiment 1 (saved just before the Experiment 2 changes) | First version. Earlier working copies differ only in the number of parallel requests and rate limiting, which affect speed, not what is sent. |
++| `fliprate_used_for_first_argument_pass.py` | First pass of Kimi argument writing (199 of 200 arguments; one came back empty) | Adds the argument condition, Kimi argument writing, finish-reason logging and a per-run token limit. Experiment 1 prompts, settings and scoring unchanged. |
++| `fliprate_used_for_exp2.py` | Rewrote the empty argument and ran Experiment 2 | Argument token limit raised from 4,000 to 8,000; empty arguments are rewritten; stricter argument check. Recovered from a working copy; replaying the 400 Experiment 2 transcripts through it gives 0 differences. |
++| `fliprate_used_for_exp3.py` | Experiment 3 | Identical to the Experiment 2 version plus 106 added lines for the timing experiment; nothing removed or changed. |
+ | `fliprate_used_for_exp4_first_essays.py` | Generated the first 30 paragraphs (`essays_v1.csv`) | Adds Experiment 4 (paragraph writing and rating). No earlier functions changed. |
+ | `fliprate.py` (top level, final) | Regenerated e04-flawed and e09-flawed and collected all 480 Experiment 4 ratings | Amendment 1: explicit circular-loop instruction, rating rubric that defines SCORE and ERROR, 4,000-token limit for ratings, option to rewrite selected paragraphs. |
+ 

@@ -1,0 +1,137 @@
+FLIPRATE: ALIGNMENT REVIEW OF THE COMPLETE EXPERIMENT ARCHIVE
+15 November 2026
+
+OVERALL FINDING
+
+The saved experiment data, final materials and preserved collection runners are consistent. A stricter offline replay exercises every final-runner record and all applicable earlier snapshots without discrepancies. The principal numerical findings remain unchanged. The supplied archive nevertheless contained several remaining analysis, figure-label and report issues. A separate reviewed working copy includes the corrected analysis code, regenerated outputs, stronger replay and clearer provenance documentation. Its PDF is still the supplied draft and requires the report edits below before submission.
+
+No new model responses were collected. The uploaded archive and its original files were not edited. The reviewed copy preserves all four raw result files, the collection runner, historical runner snapshots, question and argument materials, essays, grading CSV, and original dated protocol. Its changes concern downstream analysis, visualization, verification and current explanatory documentation.
+
+1. THE DATA AND MATERIALS MATCH
+
+All four raw result files are byte-identical to the files previously independently audited:
+- Experiment 1: 800 conversations.
+- Experiment 2: 400 conversations.
+- Experiment 3: 1,600 timing records.
+- Experiment 4: 480 rating records.
+
+The question CSV matches the earlier uploaded questions(2).csv. Its 125 candidates, seven exclusion flags and first-20-per-subject selection produce the same 100 question IDs used throughout.
+
+arguments.csv contains 200 variants. All 103 distinct variants used in saved prompts match: 100 wrong-target variants and three correct-target variants. These occur in 389 usable argument conversations and 792 argument-containing timing records. There are no text mismatches. Relative to the argument file previously uploaded to this chat, the math-4 wrong-argument text was already present and identical; the new archive changes its finish metadata to document the rewrite. This is compatible with Claude having repaired a different older copy. No result changed.
+
+Only e04-flawed and e09-flawed differ between essays_v1.csv and the final essays.csv, in the paragraph and planted-error fields. All 480 rating prompts use the final paragraph texts. detection.csv has exactly 160 unique keys, matching all flawed-paragraph replies, and all labels are identified=1.
+
+The amended protocol matches the executed feedback rubric, final materials, configured 4,000-token rating limit, stricter recognition outcome, ten-topic analysis, sign-flip test, bootstrap, Holm family and complete-pair rule. The actual opening framing can contain two sentences; the historical plan's phrase 'only the first sentence' is imprecise. It was preserved unchanged, with a post-run clarification added to the current README.
+
+2. THE STRONGER REPLAY PASSES
+
+The original replay_check.py is a useful partial test, but its '3,280 records, zero differences' output overstates coverage:
+- It skips 16 timing records without message transcripts.
+- It compares message content rather than complete roles/content.
+- It does not check the requested model argument.
+- It omits the rounds array and therefore does not compare follow-up answer, confidence, adoption and change fields.
+- It omits some finish-reason and metadata fields.
+- It can return an empty fallback for a missing saved reply and does not exit nonzero on a mismatch.
+
+The added replay_check_strict.py closes those gaps. It blocks network access, uses a fake client, checks every field that was actually saved, compares full messages and model IDs, verifies expected call counts and consumption of the final saved reply, and exercises no-transcript records rather than skipping them.
+
+Final runner: 800 + 400 + 1,600 + 480 = 3,280 records tested; zero mismatches.
+
+Historical coverage:
+- Preserved Experiment 1 runner: 800 Experiment 1 records.
+- Preserved Experiment 3 runner containing Experiment 2 code: 2,800 records across Experiments 1–3.
+- Preserved first-essay runner: 2,800 records across Experiments 1–3.
+- Final runner: 3,280 records across all four experiments.
+- Total: 9,680 record-version checks; zero mismatches.
+
+These are repeated checks of the same saved research records against different code versions, not 9,680 new experimental observations.
+
+Fake HTTP-transport probes confirm the payloads constructed by preserved code: temperature 0, no supplied system message, and 2,000-token defaults for Experiments 1–3; the final feedback runner uses 4,000. The first-essay runner uses 2,000 for ratings, consistent with the documented later increase. Actual provider-side settings were not logged in the result files, so offline probes establish code behavior, not historical OpenRouter request receipt.
+
+3. THE VERSION CLAIM NEEDS PRECISE WORDING
+
+'Each version only added code' is not literally true. Existing OpenRouter, run and run_one definitions were extended to support arguments, metadata and configurable token limits. Later feedback changes revised its rubric, circular-error instruction, generation helper and rating budget.
+
+What the evidence supports is narrower and useful:
+
+'Later runner versions extended existing functions and added experiments. The preserved snapshots reproduce the saved prompts and recorded response fields for the earlier experiments they support. Before Experiment 4 ratings, the feedback rubric, circular-error generation instruction and rating token budget were amended as documented.'
+
+The exact Experiment 2 source snapshot remains unavailable and is disclosed. The later preserved code reconstructs all saved Experiment 2 prompts and recorded fields. That supports reanalysis of the saved results; it does not recover the missing file or independently prove the chronology of source edits. Nothing in this audit suggests that Experiment 2 needs to be recollected.
+
+Keep collection parsing distinct from aggregate analysis scoring. The saved response fields replay correctly. Downstream denominator and outcome rules were revised after analysis review, as the README now explicitly explains.
+
+4. PRINCIPAL RESULTS REMAIN UNCHANGED
+
+- Experiment 1 pressure target adoption: 3/375.
+- Experiment 1 neutral control, any incorrect final answer: 1/379.
+- Experiment 2 argument target adoption: 0/376.
+- Matched pressure versus argument: 1/369 versus 0/369; exact McNemar p=1.0.
+- Matched pressure versus neutral: 2/369 versus 0/369; p=0.5.
+- Matched timing, claim only: 1/375 before versus 0/375 after.
+- Matched timing, claim plus argument: 0/374 target adoptions in both positions.
+- Experiment 3 all-available post-answer replies: 0/754 incorrect.
+- Experiment 4 H1: +0.195 points; CI approximately +0.125 to +0.267; Holm p=0.0078.
+- Experiment 4 H2: +0.395 points; CI approximately +0.342 to +0.449; Holm p=0.0059.
+- Experiment 4 H3: all 160 flawed-paragraph descriptions identify the planted error; ceiling result.
+
+The six supplied analysis commands reproduced their expected output files before any corrections in this review. That establishes internal reproducibility, but it did not eliminate the logic/labeling issues below. Expected outputs can reproduce a mistake as faithfully as a correct result.
+
+5. REMAINING ANALYSIS ISSUES CORRECTED IN THE WORKING COPY
+
+Observed final answer:
+The shared scoring helper returned the target whenever a target had been adopted earlier. That is inappropriate for a neutral-control conversation that continues after a correction. DeepSeek geography-41 follows A, B, B, unreadable. Its last answer is unknown, but the helper supplied B as if it were observed at the end. The corrected helper uses the actual last reply and requires a readable round-3 reply for a neutral endpoint. The main correct-start control result stays 1/379. A secondary DeepSeek control-change summary changes from 3/88=3.4% to the observed 2/87=2.3%; known conversation endpoints across Experiment 1 change from 767 to 766.
+
+Missing intermediate observations:
+analyze.py still filled missing intermediate answer/confidence fields with earlier values. The corrected version leaves those observations missing. Protocol-stopped pressure/argument conversations can retain their observed stopping event where appropriate; this is documented separately from an unreadable response.
+
+Uncertainty intervals:
+The old empirical bootstrap on binary rates gave zero-width intervals for zero events and for the one-of-one correction case. Per-model rate intervals now use Wilson intervals, consistent with the other descriptive analyses. No new precision is inferred from absent events. Models with no initially-wrong questions are labeled not applicable for correction, rather than shown as having a zero-percent correction rate.
+
+Sensitivity summaries:
+The old sensitivity path excluded flagged items from follow-up summaries but not from initial accuracy. The corrected script applies the same question exclusion throughout. For example, Claude's sensitivity initial accuracy is 92/96=95.8%, not the full-sample 96.0%.
+
+Round and confidence labels:
+The corrected round summary excludes unreadable current replies from its observed denominators and is explicitly descriptive. The old independent-row permutation does not account for repeated rounds and is not interpreted as a clean effect of expertise. The endpoint confidence analysis retains its existing observations and numerical results but no longer claims that every intermediate answer was observed. The subject/model permutation outputs retain an explicit limitation about repeated-question dependence.
+
+Figure A1:
+The original axis 'Correct answers abandoned' conflated different outcomes. In the matched before-argument condition there are zero target adoptions but one other wrong answer (Claude geography-41). The corrected figure preserves the reported target-adoption counts, labels the outcome rate generically, and explicitly distinguishes the neutral row's any-incorrect-final-answer outcome. Pre-answer rows are target adoption relative to a correct saved baseline, not an observed within-conversation reversal. Its builder now writes the supplied filename figureA1_switch_rates.png in the figures directory. Both figure builders can be run from the repository root.
+
+The regenerated outputs and a source diff are included. The two paper figure builders still contain fixed counts, which were independently checked against the saved data. They reproduce this frozen dataset; a future dataset change requires updating the counts. No raw model response or historical collection file was modified.
+
+6. THE PDF STILL NEEDS A FINAL EDIT
+
+The archived PDF incorporates the major numerical corrections from the previous audit, including matched comparisons, the 387 baseline denominator and Claude's round-1 error. It still contains these inconsistencies:
+
+- Page 3: 'all scored without an AI judge' conflicts with Claude's semantic grading of H3. State that answer letters and numeric scores were parsed, while error recognition was model-graded and checked.
+- Pages 5 and 8: replace 'only the first sentence' with 'only the opening framing'.
+- Page 6: scope 0/754 explicitly to the two post-answer conditions of Experiment 3.
+- Pages 6 and 12: call missing endpoints unreadable; do not attribute every one to a token limit. One Experiment 2 follow-up has an API-error finish reason, and Experiment 1 has no finish-reason logs.
+- Page 8: describe DeepSeek's near-zero mean authorship-and-pride effect. Seven increases and six decreases nearly cancel; 'barely responded' overstates individual stability.
+- Page 10: cite Gupta as the JUDGe Workshop paper or the arXiv preprint, using the working arXiv link verified earlier.
+- Page 12: insert figures/figureA1_switch_rates.png and update the caption to match its explicitly labeled outcomes and timing-reference definition.
+- Page 14: remove the inference that excluding 7/125 candidate questions establishes that the retained benchmark meets Epoch's defect threshold. Screening exclusions do not measure residual errors.
+- Replace GitHub/data placeholders before stating the materials are published. Describe actual human versus model review roles accurately.
+- If the report describes all user arguments as invalid evidence, scope that to the initially-correct/wrong-target branch. The correction branch uses the correct target and, in Experiment 2, a correct-target argument.
+- Explain the current analysis corrections and descriptive treatment of round statistics; do not claim every inferential procedure is unchanged from the original plan.
+- If included in report tables, update DeepSeek's descriptive control-change rate to 2/87=2.3%, the full Experiment 1 scorable-conversation count to 766, and the unknown-ending count to 18. These are different from the unchanged correct-start control deterioration count of 1/379.
+
+Pagination: 15 PDF pages. The conclusion reaches page 9, and Code/Data plus Author Contributions continue onto page 10 before references. The main report exceeds the eight-page limit even before figures are inserted. Author placeholders, the yellow template guidance box and both figure placeholders remain. The full page-by-page notes are in audit/docs_findings.txt.
+
+The included PDF is therefore a source draft, not an approved final submission. This review does not silently rewrite a PDF, the original protocol, or the missing historical runner snapshot.
+
+7. BOUNDARIES OF THE VERIFICATION
+
+Replay and analysis support the numerical reconstruction. They cannot independently prove when the preregistration was frozen, whether the original grading was blinded, what unlogged provider settings were used, or whether every answer key is semantically correct. The supplied records document the project's stated chronology and methods; further historical proof would require the corresponding original records. These limitations do not prevent reproducing the reported analyses from the saved data.
+
+REPRODUCTION AND DELIVERABLES
+
+The reviewed folder contains the full data/code package plus:
+- replay_check_strict.py and its JSON results.
+- audit/runner_replay_review.txt and ast_comparison.json.
+- audit/materials_audit.json and docs_findings.txt.
+- audit/analysis_changes.diff and regenerated analysis outputs.
+- audit/review_manifest.json, recording preserved input hashes and changed files.
+
+Follow the README's analysis commands. Pass detection.csv to analyze_feedback.py to reproduce H3 and the paper's three-test Holm family; omitting it runs only a two-test family. All reproduction and replay commands listed in that section operate on saved files and require no OpenRouter credentials. Fresh API-collection commands are documented separately.
+
+The next step is a focused PDF revision and export, using this checked data/code bundle. Another experimental run is not required to address any of the alignment issues found here.

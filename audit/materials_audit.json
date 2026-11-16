@@ -1,0 +1,80 @@
+{
+  "raw_hashes": {
+    "results.jsonl": {
+      "sha256": "f9cca2e441fbe3557c4e85689c0da3487f02fcdb1e9164df4ea9b6157efb0d0b",
+      "same_as_previous_upload": true
+    },
+    "results_argument.jsonl": {
+      "sha256": "04e9e9d81cd5b8fa6c3d0181893e8b66dd5e93e41a442bf05e2ee67c64b2df10",
+      "same_as_previous_upload": true
+    },
+    "results_timing.jsonl": {
+      "sha256": "3f5ed955f8bf5db8e428a5e00a85a65d9824462d2d18cc875a59f4b01c4af858",
+      "same_as_previous_upload": true
+    },
+    "results_feedback.jsonl": {
+      "sha256": "a376a00c79f5c413b6204de10c48114e719995ba85fbe5034c68ca2c7f1b1ada",
+      "same_as_previous_upload": true
+    }
+  },
+  "questions_same_as_previous_upload": true,
+  "argument_changes_vs_previous_upload": [
+    {
+      "id": "high_school_mathematics-4",
+      "kind": "wrong",
+      "fields": {
+        "finish": {
+          "old": "stop",
+          "new": "stop (rewritten after an empty first reply; text as used in the transcripts)"
+        }
+      }
+    }
+  ],
+  "arguments": {
+    "distinct_variants_used": 103,
+    "instances": {
+      "results_argument.jsonl": 389,
+      "results_timing.jsonl": 792
+    },
+    "mismatches": [],
+    "correct_target_variants": [
+      [
+        "high_school_geography-0",
+        "B"
+      ],
+      [
+        "professional_law-1117",
+        "C"
+      ],
+      [
+        "professional_law-1320",
+        "B"
+      ]
+    ]
+  },
+  "essays_changed_from_v1": {
+    "e04-flawed": [
+      "essay",
+      "planted_error"
+    ],
+    "e09-flawed": [
+      "essay",
+      "planted_error"
+    ]
+  },
+  "essays_v1_same_as_previous_essay_upload": true,
+  "feedback_materials": {
+    "rows": 480,
+    "final_text_mismatches": [],
+    "word_count_min": 159,
+    "word_count_max": 196
+  },
+  "detection": {
+    "rows": 160,
+    "unique_keys": 160,
+    "identified_counts": {
+      "1": 160
+    },
+    "keys_match_all_flawed_outputs": true
+  }
+}

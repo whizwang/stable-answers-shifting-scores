@@ -1,0 +1,580 @@
+{
+  "scope": "Offline saved-transcript replay plus constructed-request inspection; not proof of historical runtime settings or source provenance.",
+  "runner_versions": [
+    {
+      "label": "Exp1 preserved",
+      "file": "script_versions/fliprate_used_for_exp1.py",
+      "request_profiles": [
+        {
+          "profile": "default",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        }
+      ],
+      "experiments": {
+        "1": {
+          "records": 800,
+          "tested": 800,
+          "skipped": 0,
+          "with_transcripts": 800,
+          "without_transcripts": 0,
+          "fake_chat_calls": 3145,
+          "mismatches": []
+        }
+      }
+    },
+    {
+      "label": "First-argument-pass recovered (compatibility check)",
+      "file": "script_versions/fliprate_used_for_first_argument_pass.py",
+      "request_profiles": [
+        {
+          "profile": "default",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        }
+      ],
+      "experiments": {
+        "1": {
+          "records": 800,
+          "tested": 800,
+          "skipped": 0,
+          "with_transcripts": 800,
+          "without_transcripts": 0,
+          "fake_chat_calls": 3145,
+          "mismatches": []
+        },
+        "2": {
+          "records": 400,
+          "tested": 400,
+          "skipped": 0,
+          "with_transcripts": 400,
+          "without_transcripts": 0,
+          "fake_chat_calls": 1565,
+          "mismatches": []
+        }
+      },
+      "empty_argument_rewrite_fixture": {
+        "scope": "controlled empty-row fixture, no historical generator transcript asserted",
+        "argument": [
+          "high_school_mathematics-4",
+          "D"
+        ],
+        "expected_rewrite": false,
+        "fake_generation_calls": 0,
+        "configured_generation_max_tokens": 4000,
+        "other_rows_unchanged": true,
+        "output_rows": 200,
+        "passed": true
+      }
+    },
+    {
+      "label": "Exp2 recovered",
+      "file": "script_versions/fliprate_used_for_exp2.py",
+      "request_profiles": [
+        {
+          "profile": "default",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        }
+      ],
+      "experiments": {
+        "1": {
+          "records": 800,
+          "tested": 800,
+          "skipped": 0,
+          "with_transcripts": 800,
+          "without_transcripts": 0,
+          "fake_chat_calls": 3145,
+          "mismatches": []
+        },
+        "2": {
+          "records": 400,
+          "tested": 400,
+          "skipped": 0,
+          "with_transcripts": 400,
+          "without_transcripts": 0,
+          "fake_chat_calls": 1565,
+          "mismatches": []
+        }
+      },
+      "empty_argument_rewrite_fixture": {
+        "scope": "controlled empty-row fixture, no historical generator transcript asserted",
+        "argument": [
+          "high_school_mathematics-4",
+          "D"
+        ],
+        "expected_rewrite": true,
+        "fake_generation_calls": 1,
+        "configured_generation_max_tokens": 8000,
+        "other_rows_unchanged": true,
+        "output_rows": 200,
+        "passed": true
+      }
+    },
+    {
+      "label": "Exp3 preserved",
+      "file": "script_versions/fliprate_used_for_exp3.py",
+      "request_profiles": [
+        {
+          "profile": "default",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        }
+      ],
+      "experiments": {
+        "1": {
+          "records": 800,
+          "tested": 800,
+          "skipped": 0,
+          "with_transcripts": 800,
+          "without_transcripts": 0,
+          "fake_chat_calls": 3145,
+          "mismatches": []
+        },
+        "2": {
+          "records": 400,
+          "tested": 400,
+          "skipped": 0,
+          "with_transcripts": 400,
+          "without_transcripts": 0,
+          "fake_chat_calls": 1565,
+          "mismatches": []
+        },
+        "3": {
+          "records": 1600,
+          "tested": 1600,
+          "skipped": 0,
+          "with_transcripts": 1584,
+          "without_transcripts": 16,
+          "fake_chat_calls": 1584,
+          "mismatches": []
+        }
+      }
+    },
+    {
+      "label": "First-essay preserved",
+      "file": "script_versions/fliprate_used_for_exp4_first_essays.py",
+      "request_profiles": [
+        {
+          "profile": "default",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        }
+      ],
+      "experiments": {
+        "1": {
+          "records": 800,
+          "tested": 800,
+          "skipped": 0,
+          "with_transcripts": 800,
+          "without_transcripts": 0,
+          "fake_chat_calls": 3145,
+          "mismatches": []
+        },
+        "2": {
+          "records": 400,
+          "tested": 400,
+          "skipped": 0,
+          "with_transcripts": 400,
+          "without_transcripts": 0,
+          "fake_chat_calls": 1565,
+          "mismatches": []
+        },
+        "3": {
+          "records": 1600,
+          "tested": 1600,
+          "skipped": 0,
+          "with_transcripts": 1584,
+          "without_transcripts": 16,
+          "fake_chat_calls": 1584,
+          "mismatches": []
+        }
+      }
+    },
+    {
+      "label": "Final",
+      "file": "fliprate.py",
+      "request_profiles": [
+        {
+          "profile": "default",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "default",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 2000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "feedback",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 4000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "anthropic/claude-sonnet-5.5",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "openai/gpt-6.1-sol",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "google/gemini-4-carbon",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        },
+        {
+          "profile": "argument_generation",
+          "model": "deepseek/deepseek-v4.1-flash",
+          "max_tokens": 8000,
+          "temperature": 0,
+          "system_message": false
+        }
+      ],
+      "experiments": {
+        "1": {
+          "records": 800,
+          "tested": 800,
+          "skipped": 0,
+          "with_transcripts": 800,
+          "without_transcripts": 0,
+          "fake_chat_calls": 3145,
+          "mismatches": []
+        },
+        "2": {
+          "records": 400,
+          "tested": 400,
+          "skipped": 0,
+          "with_transcripts": 400,
+          "without_transcripts": 0,
+          "fake_chat_calls": 1565,
+          "mismatches": []
+        },
+        "3": {
+          "records": 1600,
+          "tested": 1600,
+          "skipped": 0,
+          "with_transcripts": 1584,
+          "without_transcripts": 16,
+          "fake_chat_calls": 1584,
+          "mismatches": []
+        },
+        "4": {
+          "records": 480,
+          "tested": 480,
+          "skipped": 0,
+          "with_transcripts": 480,
+          "without_transcripts": 0,
+          "fake_chat_calls": 480,
+          "mismatches": []
+        }
+      }
+    }
+  ],
+  "total_record_version_checks": 12080,
+  "total_mismatches": 0
+}

@@ -1,0 +1,49 @@
+FINAL REPORT REVIEW — 15 NOVEMBER 2026
+
+Report: Stable Answers, Shifting Scores: User Influence Across Four Language Models
+Live document: https://docs.google.com/document/d/1lQfPQ5pPQ1cfiP3tVIIH2u1FZ718ubIzONfpu1uIdWk/edit
+Export: stable_answers_shifting_scores.pdf
+
+STATUS
+- Main report: eight pages, including the title/abstract, Code and Data and Author Contributions.
+- References: page 9. Appendices and LLM usage statement: pages 10–15.
+- Abstract: 199 words (whitespace count).
+- Both verified figures are inserted; the template guidance box and unused author cells are removed.
+- Author block: Elizabeth Yang, Independent researcher. The author should replace the affiliation if another is preferred.
+- The template's body size and page margins are retained. Figures and all pages were visually checked after PDF export. Appendix tables no longer split individual rows.
+
+CONTENT AND ACCURACY CHANGES
+1. The abstract leads with the controlled feedback comparison: identical work, identical rating/error instructions, different opening user framing. It states the small effect sizes, the pre-specified 0.5-point threshold, the exploratory chronology and the explicit error-checking task.
+2. Experiments 1–3 remain as context and a methodological contribution; the report does not claim a universal facts-versus-judgment distinction or equivalent resistance across conditions.
+3. Corrected the unmatched timing adoption to the before-argument condition. Clarified 369-pair eligibility and the distinction between 749 matched post-answer replies and all 754 available post-answer replies.
+4. Corrected the statistical appendix: the dependent-round test is retired; round rates are descriptive; the confidence test's actual eligibility and within-pressure interpretation are explicit. The observed-endpoint count is 766, with 18 unknown endings after 16 unreadable initial answers are excluded.
+5. Distinguished original blinded grading by Claude from the subsequent ChatGPT review with model and framing visible. This final pass semantically checked all 153 distinct descriptions covering the 160 flawed-paragraph replies; all identify the intended error. This was an unblinded confirmation, not a second blinded experiment.
+6. Clarified that the Experiment 2 argument supports the assigned target, including the correct-answer correction branch after an incorrect first answer.
+7. Removed unsupported claims that materials are already public and that small effects establish no meaningful misuse uplift. Described a companion reproducibility archive until a public link is supplied.
+8. Replaced the redundant main-text category table with the same category means in the prose; Figure 1 retains all higher/same/lower counts. Shortened repeated introduction, discussion and conclusion wording.
+9. Corrected inherited paragraph styles, restored the template typography and bold labels, kept captions together, repeated table headers where needed, and started references and appendices on separate pages.
+
+FINDINGS RETAINED
+- Experiment 1: 3/375 target adoptions under insistence.
+- Experiment 2: 0/376 with an argument; paired comparison 1/369 versus 0/369.
+- Pressure versus control: 2/369 versus 0/369 incorrect endings.
+- Timing: claim 1/375 before versus 0/375 after; argument 0/374 in both matched conditions; one unmatched before-argument adoption reported separately.
+- Feedback H1: +0.19 points, 95% topic-bootstrap CI +0.13 to +0.27, Holm p = 0.008.
+- Feedback H2: +0.40 points, CI +0.34 to +0.45, Holm p = 0.006.
+- Every one of the 160 flawed-paragraph replies identified the planted error. H3 uses 40 neutral/authorship pairs and is at ceiling, not evidence of a population effect exactly equal to zero.
+- Exploratory: 15/40 flawed-paragraph authorship comparisons received a higher score while the error was still identified.
+
+BUNDLE PROVENANCE
+fliprate_submission_bundle.zip uses fliprate_reviewed_bundle_v2 as its data/code base. All existing code, raw data, materials, grading files, figures, expected outputs and historical audit files are unchanged. Only README.md is updated among existing files. New files add the finished report, this change log and the unblinded semantic-confirmation evidence. The old docs/report_draft.pdf is retained as a historical draft; use docs/report_final.pdf for the reviewed report. Older audit notes describe their original review targets and are superseded for report-layout status by this note.
+
+No new experiment responses were collected in this final report pass. The existing strict replay result remains 12,080 record-version checks with zero mismatches. Replay supports compatibility on saved histories, not exact identification of unlogged historical execution settings.
+
+AUTHOR'S REMAINING STEPS
+1. Read the final wording and revise it in your own voice; verify the displayed name and affiliation.
+2. If publishing the repository, upload the submission bundle's contents and hyperlink “companion reproducibility archive” in Code and Data to the actual URL. This avoids adding a long URL that might change pagination. Public GitHub is optional under the sprint rules, but access to the companion files helps reviewers.
+3. If changing the document, re-export and verify that the main report still ends on page 8. The supplied PDF is the checked snapshot.
+4. Upload the PDF and companion-materials link to the submission form. This review did not submit or publish the project.
+
+OFFICIAL RULES CHECKED
+https://apartresearch.com/sprints/ai-x-epistemics-research-sprint-2026-11-13-to-2026-11-15
+Eight-page maximum excludes references and appendices only; 150–250-word abstract; author/affiliation; required limitations and dual-use/ethical appendix. Public code and a video are optional. Deadline: Sunday 15 November 2026 at 11:59 PM AoE, equivalent to Monday 16 November at 6:59 AM New York.

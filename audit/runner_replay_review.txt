@@ -1,0 +1,75 @@
+RUNNER AND REPLAY AUDIT — RECOVERED EXPERIMENT 2 SNAPSHOTS
+15 November 2026
+
+VERDICT
+The expanded archive contains a recovered Experiment 2 working copy and the earlier argument-generation working copy. Source comparison confirms the stated Experiment 2-to-Experiment 3 relationship exactly: 549 lines become 655 through 106 inserted lines, with no removed or replaced lines. All preexisting functions and constants are identical. The renamed Experiment 3 file is byte-identical to the previous archive's fliprate_used_for_exp2_and_exp3.py.
+
+The stronger offline checker passes 12,080 record-version checks across six runner snapshots, with zero mismatches and no skipped records. The final-runner subset still covers all 3,280 records, including 16 no-transcript timing records. No model or network calls were made.
+
+NEW SNAPSHOT DIFFERENCES
+First argument pass -> recovered Experiment 2:
+- ARG_MAX_TOKENS increases from 4,000 to 8,000.
+- make_arguments() excludes empty argument text from the already-completed dictionary, so an empty row gets generated again.
+- check_arguments() changes the warning logic to permit mention of the argument's own option, and detect references to other option/answer/choice letters. "More targeted argument check" is more accurate than uniformly "stricter": the change removes an own-option false positive while expanding other-option detection.
+- No other existing function changes. The argument QA function prints warnings; it does not automatically reject or replace an argument.
+- The tested-model budget MAX_TOKENS remains 2,000, and TEMPERATURE remains 0. The 4,000-to-8,000 change concerns Kimi's argument generation only, not the four models' Experiment 2 replies.
+
+Recovered Experiment 2 -> Experiment 3:
+Exactly 106 inserted lines, no deleted/replaced lines. Additions are timing documentation, constants, load_saved_answers(), run_timing_one(), run_timing(), and timing CLI branches. Existing Experiment 1 and 2 code is unchanged.
+
+First-essays -> final:
+The prior review remains correct: feedback rubric and circular-error generation instruction are amended; make_essays() gains selective regeneration/version backup; final feedback calls explicitly use FEEDBACK_MAX_TOKENS=4000. The first-essays snapshot's feedback calls use the 2,000-token default. None of these changes alter the earlier experiments' saved prompts or recorded fields.
+
+The global statement "each version only added code" is still too broad because first-argument-pass -> Exp2 and first-essays -> final modify existing code. The exact append-only claim is verified specifically for Exp2 -> Exp3.
+
+STRICT REPLAY CHECKER
+File: replay_check_strict.py
+Standard-library-only; defaults to its own parent as the data directory.
+
+Commands:
+  python3 replay_check_strict.py --output replay_check_strict_results.json
+  python3 replay_check_strict.py --data-dir /path/to/package --output /path/to/results.json
+
+No absolute workspace paths are embedded. Source data and historical files remain unchanged. It verifies model arguments, full message roles/content, every stored field including per-round scores and recorded finish reasons, fake-client call counts, final-response consumption, and message-less timing status branches. Real network connections are blocked. Mismatches produce a nonzero exit.
+
+It also inspects constructed HTTP request bodies through a fake local transport. These tests confirm current preserved-code configuration, not historical provider request logs.
+
+RECORD-VERSION MATRIX
+1. Preserved Exp1: Exp1 800.
+2. Recovered first argument pass: compatibility with Exp1 800 and Exp2 400 = 1,200.
+3. Recovered Exp2: Exp1 800 and Exp2 400 = 1,200.
+4. Preserved Exp3: Exp1 800, Exp2 400, Exp3 1,600 = 2,800.
+5. Preserved first-essays: Exp1 800, Exp2 400, Exp3 1,600 = 2,800.
+6. Final: Exp1 800, Exp2 400, Exp3 1,600, Exp4 480 = 3,280.
+TOTAL: 12,080 checks; zero mismatches. Each timing replay includes its 16 no-transcript records; none is skipped.
+
+Testing the first-argument-pass snapshot against Experiment 2 records is a compatibility check. It does not assert that this earlier generator snapshot was historically used to collect Experiment 2. All replays use the current final argument materials, so these checks do not recreate the first generator's failed output.
+
+CONTROLLED EMPTY-ARGUMENT FIXTURE
+The checker additionally constructs a temporary argument file with the known math-4/option-D row empty and marked length. It provides the already saved replacement argument as a canned fake response:
+- First-pass code: 4,000-token generation configuration, zero fake generation calls, empty row remains.
+- Recovered Exp2 code: 8,000-token configuration, exactly one fake generation call, empty row is replaced; all 199 other rows remain unchanged and the file retains 200 rows.
+Both fixtures pass. This demonstrates the rewrite logic with controlled data; it is not a replay of a saved historical generator API transcript.
+
+SETTINGS VERIFIED IN PRESERVED CODE
+All six snapshots specify the same four evaluation model IDs, temperature 0, 2,000-token default, seed 20261113, first 20 non-dropped questions per subject, 24 workers, and 18 requests per model per minute. The recovered first-pass argument writer uses a 4,000-token cap; Exp2 and later use 8,000 for argument generation. The first feedback snapshot uses the 2,000 default for ratings; final feedback uses 4,000. Essay generation uses 8,000 in the feedback-capable snapshots. No user-supplied system message is constructed.
+
+REPLAY AND PROVENANCE CLAIMS
+The old missing-file limitation should be updated: a file identified by the project as the recovered Experiment 2 working copy is now included, rather than saying no such copy exists. The audit independently establishes its contents, source relationship and compatibility with the saved records. It cannot independently authenticate that this exact file was the one executed historically, or prove dates, without corresponding contemporaneous logs/version records.
+
+Suggested wording:
+"The archive includes a recovered working copy identified as the Experiment 2 runner. It reproduces all 400 saved Experiment 2 conversations in offline replay, including prompts and recorded per-round fields. The preserved Experiment 3 runner is exactly that source plus 106 added lines. Earlier argument-generation code is retained to document the 4,000-to-8,000 token-budget change and empty-argument rewrite fix."
+
+Avoid saying replay proves every historical API setting: max_tokens/temperature were not recorded in the saved request logs. Source inspection and transport probes show what the preserved code constructs. The actual historical requests would need provider/request logs for independent verification.
+
+The supplied original replay_check.py still tests only the final runner, skips 16 message-less timing records, and omits round arrays/roles/model arguments. Its four zero-difference lines are reproducible but do not themselves validate the recovered snapshots. The updated strict checker supplies that missing coverage.
+
+Keep response-field compatibility separate from aggregate analysis: analyze.py/stats.py/compare.py were deliberately revised later to fix unknown-ending denominators. New source provenance does not reverse those analysis fixes, and source/archive updates should preserve the reviewed versions rather than restore stale analysis files.
+
+DELIVERABLES
+replay_check_strict.py — ready-to-copy updated portable checker.
+replay_check_strict.json — all 12,080 check results, request profiles and two controlled generator fixtures.
+source_comparison.json — six source hashes/settings and adjacent source differences, including newly added constants.
+recovered_versions_comparison.json — focused two-pair diff summary.
+fliprate_used_for_first_argument_pass.py_to_fliprate_used_for_exp2.py.diff — exact generation-fix diff.
+fliprate_used_for_exp2.py_to_fliprate_used_for_exp3.py.diff — exact 106-line additive diff.

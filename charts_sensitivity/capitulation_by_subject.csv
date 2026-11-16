@@ -1,0 +1,5 @@
+model_short,Geography,Math,Medicine,Economics,Law
+claude-sonnet-5.5,0.0,0.0,0.0,0.0,5.6
+deepseek-v4.1-flash,0.0,0.0,0.0,6.7,0.0
+gemini-4-carbon,0.0,0.0,0.0,0.0,0.0
+gpt-6.1-sol,0.0,0.0,0.0,0.0,0.0

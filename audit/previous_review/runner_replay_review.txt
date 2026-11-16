@@ -1,0 +1,73 @@
+RUNNER VERSION AND REPLAY AUDIT
+15 November 2026
+
+Scope: immutable archive input at tmp/alignment_review/input/fliprate_all_experiments. Original replay executed in an isolated copy. No model/API/network requests. Historical runner files were not changed. A stronger portable replay checker was authored separately.
+
+VERDICT
+The substantive claim that the preserved later runners reproduce the saved earlier experiments is supported. All 3,280 records reproduce under the final runner with full stored-field checks. Across all applicable preserved snapshots, 9,680 record-version checks pass with zero differences. This validates compatibility with the saved evidence; it does not prove the missing Experiment 2 source file's exact contents or unlogged historical provider parameters.
+
+LITERAL APPEND-ONLY CLAIM
+"Each version only added code" is not literally correct. Exp1 to the preserved Exp2/3 runner changes existing OpenRouter, run and run_one definitions to support an adjustable token limit, finish-reason logging and arguments. The pressure/control templates, initial prompt, parser, question selection, random seed, model list and settings remain unchanged; replay confirms the saved Exp1 outputs and round-level scores are reproduced.
+
+The preserved Exp2/3 to first-essays version adds feedback definitions without changing prior function definitions or existing constants.
+
+The first-essays to final version changes make_essays, the circular-error generation instruction and the feedback rating prompt. It adds FEEDBACK_MAX_TOKENS=4000 and explicit client overrides for smoke-feedback/run-feedback. The preserved first-essays runner uses the default 2000-token client for ratings. Thus the README's final amendment row correctly describes the higher rating budget. (An earlier provisional audit message incorrectly said 4000 was already present; that was immediately corrected after inspecting newly added constants and CLI calls.)
+
+Recommended wording:
+"Later runner versions extended existing functions and added new experiments. The preserved snapshots reproduce the saved prompts and recorded answer fields for the earlier experiments. Before Experiment 4 ratings, the feedback rubric, circular-error generation instruction and rating token budget were amended as documented."
+
+Distinguish reply-level fields from downstream analysis: replay validates initial/round ANSWER, CONFIDENCE and target-adoption fields. The aggregate scoring rules in analyze.py/stats.py/compare.py WERE revised later to fix unknown-ending denominators. The archive already discloses this; avoid saying all historical analysis scoring was identical.
+
+ORIGINAL REPLAY COVERAGE
+The original replay_check.py produces the supplied four zero-difference lines, but its claims are broader than its actual checks:
+- It skips records with no messages. All 16 no_saved_answer timing records are skipped; it prints 1,600 rather than the 1,584 actually replayed timing records. Thus 3,264 transcript-bearing records are exercised, not all 3,280.
+- Exp1/2 fields list omits rounds, including follow-up answers/confidence, adopted_target and changed_from_initial.
+- It compares content strings but omits role labels.
+- It ignores the model argument passed to Replay.chat.
+- It does not compare finish reasons or most metadata, and may supply an empty reply if the expected saved next response does not exist.
+- It does not exercise OpenRouter transport settings, API retry paths, job resumption, the original argument/essay generator outputs, or the external feedback detection grades.
+- A difference is printed but does not result in a nonzero process exit status.
+
+The skipped no-transcript records and omitted round fields do NOT conceal a mismatch in these data: the stricter audit checks them and passes. The point is to make the public validation claim match the validation performed.
+
+STRICT CHECKER
+File: replay_check_strict.py
+Usage from repository root:
+  python3 replay_check_strict.py --output replay_check_strict_results.json
+Alternative:
+  python3 replay_check_strict.py --data-dir /path/to/package --output /path/to/results.json
+
+Standard library only. Default data directory is the script's parent; no absolute workspace paths are hardcoded. Network connections and urllib.urlopen are blocked except a local fake HTTP transport used to inspect constructed request bodies. No real key is read or required.
+
+Checks:
+- Requested model ID at every fake-client call.
+- Full prompt history including roles and content.
+- Saved next response exists and has assistant role; no silent invented empty fallback.
+- Every stored record field, including rounds, finish reasons when originally present, prior_answer, metadata and parser status.
+- Expected count of fake calls and final response consumption.
+- All no-transcript timing records by exercising their no_saved_answer branch with zero fake calls.
+- HTTP payload shape for each declared model/profile using synthetic replies and a fake local transport. The preserved code sends temperature 0 with 2000-token default, first-feedback snapshot 2000 and final feedback 4000, and 8000 for argument generation. No user-supplied system message is constructed.
+- Nonzero exit on mismatch.
+
+Historical fields absent from an older record (e.g. finish_reasons in Exp1) are allowed as additional output fields from a later version, but all fields actually saved must match exactly.
+
+CHECK COUNTS
+Preserved Exp1 runner: 800 Exp1 records.
+Preserved Exp3 runner containing Exp2: 800 Exp1 + 400 Exp2 + 1,600 Exp3.
+Preserved first-essays runner: 800 Exp1 + 400 Exp2 + 1,600 Exp3.
+Final runner: 800 Exp1 + 400 Exp2 + 1,600 Exp3 + 480 Exp4.
+Total: 9,680 record-version checks; zero mismatches.
+The final-runner portion is 3,280 records, including 16 no-transcript timing records. No record is skipped.
+
+PROVENANCE LIMITS
+The exact Exp2 runner snapshot remains unavailable, as the README discloses. The preserved later code reproduces all 400 Exp2 prompts, replies, parsed answer/confidence and per-round fields. That supports analysis of the saved evidence and reconstruction of the experiment, but cannot prove the exact historical source or rule out undocumented runtime edits.
+
+The logs do not save request-body max_tokens/temperature. Source inspection and fake-transport probes verify what the preserved code constructs, not what OpenRouter historically received. Actual historical settings would need corresponding request/provider logs to establish independently. Do not imply those were checked.
+
+Replay feeds the observed replies back to code; it cannot demonstrate that live models would return the same outputs again. It also does not establish pre-registration timestamps, the timing of material revisions, or correctness of all ground-truth keys. Those are separate provenance and validation questions.
+
+FILES
+replay_check_strict.py — stronger portable checker suitable for the reviewed bundle.
+replay_check_strict.json — complete results, version matrix and payload-profile values.
+ast_comparison.json — AST differences of preexisting functions/constants (new constants are not listed by that diagnostic; the 4000 feedback setting is a newly added constant).
+original_replay_output.txt — original script's reproduced output.

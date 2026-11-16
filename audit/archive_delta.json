@@ -1,0 +1,14 @@
+{
+  "new": [
+    "script_versions/fliprate_used_for_exp2.py",
+    "script_versions/fliprate_used_for_exp3.py",
+    "script_versions/fliprate_used_for_first_argument_pass.py"
+  ],
+  "removed": [
+    "script_versions/fliprate_used_for_exp2_and_exp3.py"
+  ],
+  "modified": [
+    "README.md"
+  ],
+  "unchanged_count": 40
+}

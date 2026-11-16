@@ -1,0 +1,4 @@
+Exp 1: 800 records, 0 differ from what the final script would send/score
+Exp 2: 400 records, 0 differ from what the final script would send/score
+Exp 3: 1600 records, 0 differ from what the final script would send/score
+Exp 4: 480 records, 0 differ from what the final script would send/score

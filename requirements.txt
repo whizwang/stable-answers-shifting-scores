@@ -1,0 +1,7 @@
+# Saved-data analysis environment verified during release preparation.
+# Python >=3.11; checked with Python 3.12.14.
+# These are analysis-environment pins, not a recovered collection-time lockfile.
+numpy==2.3.5
+scipy==1.17.0
+pandas==2.2.3
+matplotlib==3.10.8

@@ -1,0 +1,101 @@
+{
+  "comparison_scope": "No analysis or model rerun; byte-level comparison of new upload with prior original and selected reviewed files.",
+  "same_original_new_count": 40,
+  "same_original_new": [
+    "analyze.py",
+    "analyze_feedback.py",
+    "analyze_timing.py",
+    "arguments.csv",
+    "charts/1_flip_curves.png",
+    "charts/2_capitulation_vs_correction.png",
+    "charts/3_capitulation_by_subject.png",
+    "charts/4_confidence_erosion.png",
+    "charts/capitulation_by_subject.csv",
+    "charts/stats.txt",
+    "charts/summary.csv",
+    "charts_sensitivity/stats.txt",
+    "compare.py",
+    "detection.csv",
+    "docs/exp4_preregistration.md",
+    "docs/report_draft.pdf",
+    "essays.csv",
+    "essays_v1.csv",
+    "expected_outputs/exp1_exp2_compare.txt",
+    "expected_outputs/exp1_stats.txt",
+    "expected_outputs/exp1_stats_sensitivity.txt",
+    "expected_outputs/exp1_summary.txt",
+    "expected_outputs/exp3_timing.txt",
+    "expected_outputs/exp4_feedback.txt",
+    "expected_outputs/replay_check.txt",
+    "figures/figure1_feedback_shifts.png",
+    "figures/figureA1_switch_rates.png",
+    "figures/make_figure1.py",
+    "figures/make_figure_a1.py",
+    "fliprate.py",
+    "questions.csv",
+    "replay_check.py",
+    "results.jsonl",
+    "results_argument.jsonl",
+    "results_feedback.jsonl",
+    "results_timing.jsonl",
+    "scoring.py",
+    "script_versions/fliprate_used_for_exp1.py",
+    "script_versions/fliprate_used_for_exp4_first_essays.py",
+    "stats.py"
+  ],
+  "changed_original_new": [
+    "README.md"
+  ],
+  "added_new": [
+    "script_versions/fliprate_used_for_exp2.py",
+    "script_versions/fliprate_used_for_exp3.py",
+    "script_versions/fliprate_used_for_first_argument_pass.py"
+  ],
+  "removed_new": [
+    "script_versions/fliprate_used_for_exp2_and_exp3.py"
+  ],
+  "old_combined_identical_to_new_exp3": true,
+  "reviewed_fixes_not_present_in_new_upload": {
+    "scoring.py": {
+      "new_equals_original": true,
+      "new_equals_reviewed": false,
+      "original_sha256": "2415fce2cbf2759e7dc1ccd8f2185ccb04556791155b2ca3072c727914883bcd",
+      "new_sha256": "2415fce2cbf2759e7dc1ccd8f2185ccb04556791155b2ca3072c727914883bcd",
+      "reviewed_sha256": "9c99881d4f32d96312ae5f7329f1d5bf88c6bf5dbcf29e4bca458648ca9cb417"
+    },
+    "analyze.py": {
+      "new_equals_original": true,
+      "new_equals_reviewed": false,
+      "original_sha256": "d43cb324523d1e737b50e2413a526fc75c16b164e825f0c2898b0e567c7005c7",
+      "new_sha256": "d43cb324523d1e737b50e2413a526fc75c16b164e825f0c2898b0e567c7005c7",
+      "reviewed_sha256": "5478a82d9192b197b8456d51a02995ad3388eaa6b4b5ba8f571418a0c9fd12f4"
+    },
+    "stats.py": {
+      "new_equals_original": true,
+      "new_equals_reviewed": false,
+      "original_sha256": "926f526aef24a9c508b1db005ded6b4847b9399d56837550013fa0bf737225ff",
+      "new_sha256": "926f526aef24a9c508b1db005ded6b4847b9399d56837550013fa0bf737225ff",
+      "reviewed_sha256": "bca0f384f5212ddae3a58f8c76dadd2e21969d0791a7635fde9b19d570900c50"
+    },
+    "figures/make_figure1.py": {
+      "new_equals_original": true,
+      "new_equals_reviewed": false,
+      "original_sha256": "62ba751c4317d3088d8a35b71d0fcc0989fbc2e88c3fd46fcbc57d292e9413e0",
+      "new_sha256": "62ba751c4317d3088d8a35b71d0fcc0989fbc2e88c3fd46fcbc57d292e9413e0",
+      "reviewed_sha256": "9ced0c4a812a87dfd97e2be21d18196871eefae886bab872c0c01a3d3eb347f1"
+    },
+    "figures/make_figure_a1.py": {
+      "new_equals_original": true,
+      "new_equals_reviewed": false,
+      "original_sha256": "138bdda4b43cac07ad3f699acbe3589094665d7f08002bcc24eec24fe569d810",
+      "new_sha256": "138bdda4b43cac07ad3f699acbe3589094665d7f08002bcc24eec24fe569d810",
+      "reviewed_sha256": "58c5cdf6e616e45a3aa8ad49454c468e509f746d041aa6572594fc4f7ca8106e"
+    }
+  },
+  "exp2_to_exp3_diff": {
+    "inserted_lines": 106,
+    "deleted_lines": 0,
+    "replaced_blocks": 0
+  },
+  "raw_result_files_identical_across_all_three": true
+}

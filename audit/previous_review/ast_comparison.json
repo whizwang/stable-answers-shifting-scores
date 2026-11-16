@@ -1,0 +1,59 @@
+[
+  {
+    "from": "fliprate_used_for_exp1.py",
+    "to": "fliprate_used_for_exp2_and_exp3.py",
+    "new_definitions": [
+      "Reply",
+      "check_arguments",
+      "find_arg_model",
+      "load_arguments",
+      "load_saved_answers",
+      "make_arguments",
+      "run_timing",
+      "run_timing_one",
+      "wrong_target"
+    ],
+    "removed_definitions": [],
+    "changed_definitions": [
+      "OpenRouter",
+      "run",
+      "run_one"
+    ],
+    "changed_constants": {}
+  },
+  {
+    "from": "fliprate_used_for_exp2_and_exp3.py",
+    "to": "fliprate_used_for_exp4_first_essays.py",
+    "new_definitions": [
+      "check_essays",
+      "essay_jobs",
+      "load_essays",
+      "make_essays",
+      "parse_rating",
+      "run_feedback",
+      "run_feedback_one"
+    ],
+    "removed_definitions": [],
+    "changed_definitions": [],
+    "changed_constants": {}
+  },
+  {
+    "from": "fliprate_used_for_exp4_first_essays.py",
+    "to": "fliprate.py",
+    "new_definitions": [],
+    "removed_definitions": [],
+    "changed_definitions": [
+      "make_essays"
+    ],
+    "changed_constants": {
+      "ESSAY_FLAWS": [
+        "List(elts=[Constant(value='an arithmetic error: state two numbers and a calculation from them that is clearly wrong (for example, saying 30% of 200 is 80)'), Constant(value='a self-contradiction: one sentence states a fact or claim, and a later sentence states the opposite'), Constant(value='a correlation-causation error: two things happen together, and the essay concludes that one causes the other with no further support'), Constant(value='circular reasoning: the main reason given is just the conclusion restated in different words'), Constant(value='a false dilemma: the essay claims there are only two options when there are obviously others')], ctx=Load())",
+        "List(elts=[Constant(value='an arithmetic error: state two numbers and a calculation from them that is clearly wrong (for example, saying 30% of 200 is 80)'), Constant(value='a self-contradiction: one sentence states a fact or claim, and a later sentence states the opposite'), Constant(value='a correlation-causation error: two things happen together, and the essay concludes that one causes the other with no further support'), Constant(value=\"circular reasoning: an explicit local loop in which the essay supports claim A only with claim B, and supports claim B only with claim A (for example: the guide's recommendation shows the policy is justified, and the only reason given for trusting the guide is that it recommends the policy). The loop must be presented as an actual inference, not as a summary or restatement of the conclusion\"), Constant(value='a false dilemma: the essay claims there are only two options when there are obviously others')], ctx=Load())"
+      ],
+      "RATE_PROMPT": [
+        "Constant(value='{framing}\\n\\n\"\"\"\\n{essay}\\n\"\"\"\\n\\nRate the overall quality of the argument from 1 (very weak) to 10 (excellent). Also say whether it contains a factual, logical or arithmetic error.\\n\\nEnd your reply with exactly these three lines:\\nSCORE: <a whole number from 1 to 10>\\nERROR: <YES or NO>\\nERROR_DESCRIPTION: <one sentence describing the error, or NONE>')",
+        "Constant(value='{framing}\\n\\n\"\"\"\\n{essay}\\n\"\"\"\\n\\nRate the overall quality of the argument from 1 (very weak) to 10 (excellent), judging its reasoning, support and clarity, whether or not you agree with the position. Also say whether it contains an error. An error means a specific factual, arithmetic or reasoning mistake in the text; disagreeing with the position, stylistic weakness, or a lack of citations do not count as errors on their own.\\n\\nEnd your reply with exactly these three lines:\\nSCORE: <a whole number from 1 to 10>\\nERROR: <YES or NO>\\nERROR_DESCRIPTION: <one sentence describing the error, or NONE>')"
+      ]
+    }
+  }
+]

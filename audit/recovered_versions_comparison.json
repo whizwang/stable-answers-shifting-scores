@@ -1,0 +1,74 @@
+[
+  {
+    "from": "fliprate_used_for_first_argument_pass.py",
+    "to": "fliprate_used_for_exp2.py",
+    "from_sha256": "0f1643ba512446e851f901d489b4351a6f640dea1a59cfc29afcc04554f93709",
+    "to_sha256": "a0ed9a1b114b4587a615bc18c9ae5953f1521ce1faa82cb680791411d013a9f0",
+    "lines_before": 546,
+    "lines_after": 549,
+    "inserted_lines": 2,
+    "deleted_lines": 0,
+    "replaced_spans": [
+      [
+        70,
+        71,
+        70,
+        71
+      ],
+      [
+        405,
+        407,
+        405,
+        407
+      ],
+      [
+        414,
+        415,
+        414,
+        416
+      ]
+    ],
+    "new_defs": [],
+    "removed_defs": [],
+    "changed_defs": [
+      "check_arguments",
+      "make_arguments"
+    ],
+    "changed_constants": {
+      "ARG_MAX_TOKENS": [
+        "Constant(value=4000)",
+        "Constant(value=8000)"
+      ],
+      "BAD_WORDS": [
+        "Tuple(elts=[Constant(value='incorrect'), Constant(value='wrong'), Constant(value='not the answer'), Constant(value='however'), Constant(value='although'), Constant(value='option a'), Constant(value='option b'), Constant(value='option c'), Constant(value='option d'), Constant(value='as an ai'), Constant(value=\"i can't\"), Constant(value='i cannot'), Constant(value='sorry')], ctx=Load())",
+        "Tuple(elts=[Constant(value='incorrect'), Constant(value='wrong'), Constant(value='not the answer'), Constant(value='however'), Constant(value='although'), Constant(value='as an ai'), Constant(value=\"i can't\"), Constant(value='i cannot'), Constant(value='sorry')], ctx=Load())"
+      ]
+    },
+    "new_constants": []
+  },
+  {
+    "from": "fliprate_used_for_exp2.py",
+    "to": "fliprate_used_for_exp3.py",
+    "from_sha256": "a0ed9a1b114b4587a615bc18c9ae5953f1521ce1faa82cb680791411d013a9f0",
+    "to_sha256": "2e53a46355bfcbaf282b14b76dee2b332e7bb5a04735013ca552a6c7433bdbee",
+    "lines_before": 549,
+    "lines_after": 655,
+    "inserted_lines": 106,
+    "deleted_lines": 0,
+    "replaced_spans": [],
+    "new_defs": [
+      "load_saved_answers",
+      "run_timing",
+      "run_timing_one"
+    ],
+    "removed_defs": [],
+    "changed_defs": [],
+    "changed_constants": {},
+    "new_constants": [
+      "CLAIM",
+      "RESULTS_TIMING_NAME",
+      "TIMING_ARG",
+      "TIMING_BASIC"
+    ]
+  }
+]
